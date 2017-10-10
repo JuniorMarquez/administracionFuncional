@@ -1,0 +1,81 @@
+<div class="bg-light lter b-b wrapper-md">
+  <h1 class="m-n font-thin h3">Agregar Slide</h1>
+</div>
+<div class="wrapper-md" ng-controller="AgregarSlideCtrl">
+ <toaster-container toaster-options="{'position-class': 'toast-top-right', 'close-button':true}"></toaster-container>
+  <tabset class="tab-container" ng-init="steps={percent:20, step1:true, step2:false, step3:false}">
+    <tab heading="Datos Personales" active="steps.step1" select="steps.percent=10">
+      <!-- <p class="m-b"></p> -->
+      <progressbar value="steps.percent" class="progress-xs" type="success"></progressbar>
+      <!-- <h4>Validate Form</h4> -->
+      <form name="step1" class="form-validation">
+        <div class="row colEditada v-middle font-thin" >                     
+                  <div  class="h5">
+                   
+                  
+                     <div class="col-sm-3" >
+                      </p>Nombre:
+                      <input type="text" placeholder="Nombre" class="form-control  font-bold" ng-model="item.Nombre" >
+                    </div>
+                   
+                   
+
+                   
+                  </div>
+
+                </div>
+                    <div class="m-t m-b">
+                    <div class="col-sm-12" >
+
+                      <input type="file" nv-file-select="" uploader="uploader" />
+                      <table class="table bg-white-only b-a">
+                          <thead>
+                              <tr>
+                                  <th width="50%">Nombre</th>
+                                  <th ng-show="uploader.isHTML5">Tamaño</th>
+                                  <th ng-show="uploader.isHTML5">Progreso</th>
+                                  <th>Estado</th>
+                                  <th>Acciones</th>
+                              </tr>
+                          </thead>
+                          <tbody>
+                              <tr ng-repeat="item in uploader.queue">
+                                  <td><strong>{{ item.file.name }}</strong></td>
+                                  <td ng-show="uploader.isHTML5" nowrap>{{ item.file.size/1024/1024|number:2 }} MB</td>
+                                  <td ng-show="uploader.isHTML5">
+                                      <div class="progress progress-sm m-b-none m-t-xs">
+                                          <div class="progress-bar bg-info" role="progressbar" ng-style="{ 'width': item.progress + '%' }"></div>
+                                      </div>
+                                  </td>
+                                  <td class="text-center">
+                                      <span ng-show="item.isSuccess" class="text-success"><i class="glyphicon glyphicon-ok"></i></span>
+                                      <span ng-show="item.isCancel" class="text-warning"><i class="glyphicon glyphicon-ban-circle"></i></span>
+                                      <span ng-show="item.isError" class="text-danger"><i class="glyphicon glyphicon-remove"></i></span>
+                                  </td>
+                                  <td nowrap>
+                                      <button type="button" class="btn btn-success btn-xs" ng-click="item.upload()" ng-disabled="item.isReady || item.isUploading || item.isSuccess">
+                                          Subir
+                                      </button>
+                                      <button type="button" class="btn btn-default btn-xs" ng-click="item.cancel()" ng-disabled="!item.isUploading">
+                                          Cancelar
+                                      </button>
+                                      <button type="button" class="btn btn-danger btn-xs" ng-click="item.remove()">
+                                          Remover
+                                      </button>
+                                  </td>
+                              </tr>
+                          </tbody>
+                      </table>
+                      <div class="progress bg-light dker" style="">
+                              <div class="progress-bar progress-bar-striped bg-info" role="progressbar" ng-style="{ 'width': uploader.progress + '%' }"></div>
+                      </div>
+                    </div>
+         <button type="button" class="btn btn-default btn-rounded"  ng-click="guardarSlide(item)">Guardar</button>
+        </div>
+        </br>
+      </form>
+    </tab>
+    
+   
+  </tabset>
+</div>

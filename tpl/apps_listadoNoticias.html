@@ -1,0 +1,113 @@
+ <!-- navbar header -->
+    
+<script type="text/ng-template" id="modalNuevaPubliacion.html">
+  <div ng-include="'tpl/modalNuevaPubliacion.html'"></div>
+</script>
+<script type="text/ng-template" id="modalBorrarNoticia.html">
+  <div ng-include="'tpl/modalBorrarNoticia.html'"></div>
+</script>
+<script type="text/ng-template" id="modalPeticionSusNot.html">
+  <div ng-include="'tpl/modalPeticionSusNot.html'"></div>
+</script>
+<script type="text/ng-template" id="modalEdicionPubliacion.html">
+  <div ng-include="'tpl/modalEdicionPubliacion.html'"></div>
+</script>
+<div class="hbox hbox-auto-xs hbox-auto-sm"  ng-controller="noticias2Ctrl" ng-init=" 
+
+    app.settings.asideFolded = true; 
+    app.settings.asideDock = false;
+  ">
+  <div class="">
+    <div class="bg-light lter b-b wrapper-md">
+     
+      <div class="row">
+        <div class="col-sm-6 col-xs-12">
+          <h1 class="m-n font-thin h3 text-black">Noticias</h1>
+          <small class="text-muted">Listado</small>
+        </div>
+        <div class="col-sm-6 text-right hidden-xs">         
+        </div>
+      </div>
+    </div>
+
+  </div>
+ 
+</div>
+<div class="wrapper-md"  ng-show="!noticiasPendientes" ui-refresh="noticiasPendientes" ng-controller="noticias2Ctrl">
+      <!-- stats -->
+      <div class="text-center">
+         <i class="fa fa-spin fa-spinner fa-2x "></i> Cargando ...
+      </div>
+
+      
+    </div>
+<div class="wrapper-md" ng-show="noticiasPendientes" ui-refresh="noticiasPendientes" ng-controller="noticias2Ctrl"  style = "overflow-x:hidden;"
+>
+
+
+<!-- <div class="container col-lg-12"   > -->
+
+<div class="col-lg-12"   >
+ <toaster-container toaster-options="{'position-class': 'toast-top-right', 'close-button':true}"></toaster-container>
+      <tabset class="tab-container" >
+        <tab>
+        <tab-heading>
+        Nuevas Noticias
+        </tab-heading>
+          <div class="panel panel-default">
+              <div class="table-responsive">
+                <table ui-jq="dataTable" id="tabla1" ui-refresh="noticias" ui-options="tbOptionsPendientes"  class="table table-striped m-b-none">
+                  <thead>
+                    <tr>
+                    <th  style="width:20%">Fecha.</th> 
+                    <th  style="width:35%">Titulo</th> 
+                    <th  style="width:35%"></th> 
+                    <th  style="width:15%"></th> 
+                    </tr>
+                  </thead>
+        
+                </table>
+              </div> 
+            </div>      
+            </tab>
+        <tab heading="Publicas">  
+          <div class="panel panel-default">
+            <div class="table-responsive">
+              <table ui-jq="dataTable"  id="tablaAutorizadas"  ui-options="tbOptionsAutorizadas" ui-refresh="noticias" class="table table-striped m-b-none">
+                <thead>
+                  <tr>
+                    <th  style='width:20%;'>Fecha</th>  
+                    <th  style="width:35%">Titulo</th> 
+                    <th  style="width:35%"></th> 
+
+                  </tr>
+                </thead>
+              </table>
+            </div> 
+          </div>
+        </tab>
+<!-- 
+        <tab heading="Privadas">  
+          <div class="panel panel-default">
+            <div class="table-responsive">
+              <table ui-jq="dataTable"    ui-options="tbOptionsPrivadas" ui-refresh="noticias" class="table table-striped m-b-none">
+                <thead>
+                  <tr>
+                  <th  style='width:20%;'>Fecha</th>  
+                    <th  style="width:35%">Titulo</th> 
+                    <th  style="width:35%">Autor</th> 
+                    <th  style="width:15%"></th>  
+                  </tr>
+                </thead>
+              </table>
+            </div> 
+          </div>
+        </tab> -->
+      </tabset>
+     
+    
+  
+
+  </div>
+
+

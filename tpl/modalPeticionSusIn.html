@@ -1,0 +1,76 @@
+<div class="modal-header" ng-init="consultaSuscripcion()">
+    <h3 class="modal-title">Aceptar Suscripcion en Incompany<p>
+   </p></h3>
+
+</div>
+<div class="modal-body">
+    	
+  <div ng-controller="AccordionDemoCtrl"  >
+<accordion close-others="oneAtATime" >
+          <accordion-group heading="Datos de la Empresa"   is-open="status.isFirstOpen" is-disabled="status.isFirstDisabled" >
+            <p>
+            <div ng-show="!item.editing">
+              <div class="col-sm-12" > 
+                <b>Nombre de la Empresa:</b> {{item.nombreEmpresa}}
+              </div>
+              <div class="col-sm-12">
+              <b>Persona de contacto:</b>
+                {{item.personaContacto}}
+              </div>
+                
+
+            </div>
+           
+           
+            
+            </p>
+          </accordion-group>
+         
+         <accordion-group heading="Datos de Contacto"  is-disabled="status.isFirstDisabled">
+            <p>
+            <div >
+            <div class="col-sm-12">
+              <b>Telefono:</b>
+                {{item.telefono}}
+              </div>
+            <div class="col-sm-6">
+              <b>Instagram:</b>
+                {{item.cuentaI}}
+              </div>
+               <div class="col-sm-6">
+              <b>Facebook:</b>
+                {{item.cuentaF}}
+              </div>
+               <div class="col-sm-6">
+              <b>Twitter:</b>
+                {{item.cuentaT}}
+              </div>
+              <div class="col-sm-12">
+                <b>Dirección:</b> 
+                {{item.direccion}}
+              </div>           
+            </div>            
+          </accordion-group>     
+          <accordion-group heading="Intereses"  is-disabled="status.isFirstDisabled">
+            <p>
+            <div >
+            <div class="col-sm-12">
+              <b>Area de Conocimiento de Interés:</b>
+                {{item.area}}
+              </div>
+                    
+            </div>            
+          </accordion-group>          
+  
+    
+   
+        </accordion>
+       
+
+
+       </div>
+</div>
+<div class="modal-footer">                  
+    <button class="btn btn-default" ng-click="cancel()">Cancelar</button>
+    <button class="btn btn-primary" ng-click="okAprobacion(item)">OK</button>
+</div>

@@ -1,0 +1,133 @@
+<div class="bg-light lter b-b wrapper-md">
+  <h1 class="m-n font-thin h3">Agregar Noticia</h1>
+</div>
+<div class="wrapper-md" ng-controller="AgregarnotCtrl">
+ <toaster-container toaster-options="{'position-class': 'toast-top-right', 'close-button':true}"></toaster-container>
+  <tabset class="tab-container" ng-init="steps={percent:20, step1:true, step2:false, step3:false}">
+    <tab heading="Datos de la Noticia" active="steps.step1" select="steps.percent=10">
+      <!-- <p class="m-b"></p> -->
+      <progressbar value="steps.percent" class="progress-xs" type="success"></progressbar>
+      <!-- <h4>Validate Form</h4> -->
+      <form name="step1" class="form-validation">
+        <div class="row colEditada v-middle font-thin" >                     
+                  <div  class="h5">
+                   
+                  
+                     <div class="col-sm-9" >
+                      </p>Titulo o tema:
+                      <input type="text" placeholder="Titulo" class="form-control  font-bold" ng-model="item.titulo" >
+                    </div>
+                   
+                       <div class="col-sm-3" >
+                      </p>Estado:
+                      <ui-select ng-model="item.status" theme="bootstrap" >
+                        <ui-select-match placeholder="">{{$select.selected}}</ui-select-match>
+                        <ui-select-choices group-by="" repeat="item in estados | filter: $select.search">
+                          <span ng-bind-html="item | highlight: $select.search"></span>
+                        </ui-select-choices>
+                      </ui-select>
+                    </div> 
+                     <div class="col-sm-6" >
+                    </p>Tipo de Noticia:
+                    <ui-select ng-model="item.tipoNoticia" theme="bootstrap" >
+                      <ui-select-match placeholder="Seleccione...">{{$select.selected.nombre}}</ui-select-match>
+                      <ui-select-choices group-by="'nombre'" repeat="item.nombre as item in tiposNoticias | filter: $select.search">
+                      <span ng-bind-html="item.nombre | highlight: $select.search"></span>
+                      </ui-select-choices>
+                    </ui-select>
+                  </div>  
+                   
+                  </div>
+
+                </div>
+                    <div class="m-t m-b">
+                    <div class="col-sm-12" >
+
+                      <input type="file" nv-file-select="" uploader="uploader" />
+                      <table class="table bg-white-only b-a">
+                          <thead>
+                              <tr>
+                                  <th width="50%">Nombre</th>
+                                  <th ng-show="uploader.isHTML5">Tamaño</th>
+                                  <th ng-show="uploader.isHTML5">Progreso</th>
+                                  <th>Estado</th>
+                                  <th>Acciones</th>
+                              </tr>
+                          </thead>
+                          <tbody>
+                              <tr ng-repeat="item in uploader.queue">
+                                  <td><strong>{{ item.file.name }}</strong></td>
+                                  <td ng-show="uploader.isHTML5" nowrap>{{ item.file.size/1024/1024|number:2 }} MB</td>
+                                  <td ng-show="uploader.isHTML5">
+                                      <div class="progress progress-sm m-b-none m-t-xs">
+                                          <div class="progress-bar bg-info" role="progressbar" ng-style="{ 'width': item.progress + '%' }"></div>
+                                      </div>
+                                  </td>
+                                  <td class="text-center">
+                                      <span ng-show="item.isSuccess" class="text-success"><i class="glyphicon glyphicon-ok"></i></span>
+                                      <span ng-show="item.isCancel" class="text-warning"><i class="glyphicon glyphicon-ban-circle"></i></span>
+                                      <span ng-show="item.isError" class="text-danger"><i class="glyphicon glyphicon-remove"></i></span>
+                                  </td>
+                                  <td nowrap>
+                                      <button type="button" class="btn btn-success btn-xs" ng-click="item.upload()" ng-disabled="item.isReady || item.isUploading || item.isSuccess">
+                                          Subir
+                                      </button>
+                                      <button type="button" class="btn btn-default btn-xs" ng-click="item.cancel()" ng-disabled="!item.isUploading">
+                                          Cancelar
+                                      </button>
+                                      <button type="button" class="btn btn-danger btn-xs" ng-click="item.remove()">
+                                          Remover
+                                      </button>
+                                  </td>
+                              </tr>
+                          </tbody>
+                      </table>
+                      <div class="progress bg-light dker" style="">
+                              <div class="progress-bar progress-bar-striped bg-info" role="progressbar" ng-style="{ 'width': uploader.progress + '%' }"></div>
+                      </div>
+                    </div>
+          <button type="submit" ng-disabled="step1.$invalid" class="btn btn-default btn-rounded" ng-click="steps.step2=true">Siguiente</button>
+        </div>
+        </br>
+      </form>
+    </tab>
+    <tab heading="Contenido" disabled="step1.$invalid" active="steps.step2" select="steps.percent=30">
+      <form name="step2" class="form-validation">
+        <!-- <p class="m-b">Continue the next step</p> -->
+        <progressbar value="steps.percent" class="progress-xs" type="success"></progressbar>
+        
+        
+        <div ng-repeat="item in itemsContenido">
+          <textarea class="form-control" rows="5"  ng-model="item.contenido"placeholder="{{item.contenidoPlaceholder}}" required="true"></textarea>
+          </br>
+  
+      </div>
+       <!--  <p>Your age:</p>
+        <input type="number" name="age" class="form-control" ng-model="age" required>
+ -->
+        <div class="m-t m-b">
+          <button type="button" class="btn btn-default btn-rounded" ng-click="steps.step1=true">Anterior</button>
+          <button type="submit" ng-disabled="step2.$invalid" class="btn btn-default btn-rounded" ng-click="steps.step3=true">Siguiente</button>
+        </div>
+      </form>
+    </tab>
+    <tab heading="Otra información" disabled="step2.$invalid" active="steps.step3" select="steps.percent=60">
+      <!-- <p class="m-b">Congraduations! You got the last step.</p> -->
+      <progressbar value="steps.percent" class="progress-xs" type="success"></progressbar>
+      <!-- <p>Just one click to finish it.</p> -->
+  <div class="row">
+    
+       <div class="col-sm-12">
+      </p>Observaciones:
+           <textarea class="form-control" rows="4" name="observaciones"   ng-model="item.observaciones"placeholder="Observaciones" required="true"></textarea>
+      </div>
+           </div>
+      <div class="m-t m-b">
+        <button type="button" class="btn btn-default btn-rounded" ng-click="steps.step2=true">Anterior</button>
+        <button type="button" class="btn btn-default btn-rounded"  ng-click="guardar(item)">Finalizar</button>
+        <!-- ng-click="steps.percent=100" -->
+      </div>
+ 
+    </tab>
+  </tabset>
+</div>

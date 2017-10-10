@@ -1,0 +1,62 @@
+<div class="modal-header" ng-init="entrar2()"> 
+    <h3 class="modal-title">Información de contacto</h3>
+</div>
+<div class="modal-body">
+    
+        <div class="form-group">
+            <div class="col-md-18">
+                Dirección física de la organización
+                <textarea rows="3" class="form-control input-sm"   placeholder="Dirección" ng-model="item.direccion" style="" > </textarea>
+           </div>  
+        </div>
+      
+
+        <div class="row form-group">
+            <div class="col-xs-4">
+                Teléfono 1
+                <input placeholder="Teléfono de contacto 1" type="text" class="form-control" 
+               ng-model="item.telefono1">
+            </div>
+              <div class="col-xs-4">
+                Teléfono 2
+                <input placeholder="Telefono de contacto 2" type="text" class="form-control" 
+               ng-model="item.telefono2">
+            </div>
+              <div class="col-xs-4">
+                Teléfono móvil
+                <input placeholder="Telefono movil" type="text" class="form-control" 
+               ng-model="item.telefonoMovil">
+            </div>
+            <div class="col-xs-12">
+                Contacto en una línea
+                <input placeholder="Contacto en una línea" type="text" class="form-control" 
+               ng-model="item.contactoLineal">
+            </div>
+            <div class="col-xs-4">
+                Email de contacto
+                <input placeholder="Email de contacto" type="text" class="form-control" 
+               ng-model="item.emailContacto">
+            </div>
+        </div>
+          <div class="row form-group">
+            <div class="col-xs-4">
+                Instagram
+                <input placeholder="Instagram" type="text" class="form-control" 
+               ng-model="item.instagram">
+            </div>
+              <div class="col-xs-4">
+                Facebook
+                <input placeholder="Facebook" type="text" class="form-control" 
+               ng-model="item.facebook">
+            </div>
+            <div class="col-xs-4">
+                Twitter
+                <input placeholder="Twitter" type="text" class="form-control" 
+               ng-model="item.twitter">
+            </div>
+        </div>
+</div>
+<div class="modal-footer">                  
+    <button class="btn btn-default" ng-click="cancel()">Cancelar</button>
+    <button class="btn btn-primary" ng-click="okContacto(item)">OK</button>
+</div>

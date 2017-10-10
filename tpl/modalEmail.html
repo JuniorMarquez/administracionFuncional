@@ -1,0 +1,29 @@
+<div class="modal-header">
+    <h3 class="modal-title">Agregar email corporativo</h3>
+</div>
+<div class="modal-body">
+    
+        <div class="row form-group">
+          
+              <div class="col-xs-3">
+                <input placeholder="Usuario" type="text" class="form-control" 
+               ng-model="item.usuario" 
+               >
+             </div> 
+              <div class="col-xs-3">
+                <input placeholder="Email" type="email" class="form-control" 
+               ng-model="item.email" 
+               >
+             </div> 
+              <div class="col-xs-3">
+                <input placeholder="Contraseña" type="text" class="form-control" 
+               ng-model="item.password" 
+               >
+             </div> 
+        </div>
+
+</div>
+<div class="modal-footer">                  
+    <button class="btn btn-default" ng-click="cancel()">Cancelar</button>
+    <button class="btn btn-primary" ng-click="okEmail(item)">OK</button>
+</div>

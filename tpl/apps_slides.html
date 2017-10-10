@@ -1,0 +1,120 @@
+
+  <style>
+
+    </style> 
+           <script type="text/ng-template" id="modalConfirm.html">
+            <div ng-include="'tpl/modalConfirm.html'"></div>
+          </script>
+              <script type="text/ng-template" id="modalConfirmBorrarSlide.html">
+            <div ng-include="'tpl/modalConfirmBorrarSlide.html'"></div>
+          </script>
+          <script type="text/ng-template" id="modalConfirm2.html">
+            <div ng-include="'tpl/modalConfirm2.html'"></div>
+          </script>
+           <div class="">
+   </div>
+  <div class="hbox hbox-auto-xs hbox-auto-sm bg-light " ng-init="
+  app.settings.asideFixed = true;
+  app.settings.container = false;
+  app.settings.asideFolded = true;
+  app.hideAside = false;
+  app.hideFooter = true;
+  app.settings.asideFolded = true;" 
+  ng-controller="SlidesCtrl">
+  <div class="col w-lg2 lter b-r">
+    <div class="vbox">
+      <div class="wrapper-xs b-b">
+        <div class="input-group m-b-xxs">
+          <span class="input-group-addon input-sm no-border no-bg"><i class="icon-magnifier text-md m-t-xxs"></i></span>
+          <input type="text" class="form-control input-sm no-border no-bg text-md" placeholder="{{facilitador.nombre ? facilitador.nombre : 'Todos'}}" ng-model="query">  
+        </div>
+      </div>
+      <div class="row-row">
+        <div class="cell scrollable hover">
+          <div class="cell-inner">
+            <div class="m-t-n-xxs">
+              <div class="list-group list-group-lg no-radius no-border no-bg m-b-none">
+                <a ng-repeat="item in items | orderBy:'Nombre'" class="list-group-item m-l" ng-class="{'select m-l-none': item.selected }" ng-click="selectItem(item)">
+                  <span class="block text-ellipsis m-l-n text-md" ng-class="{'m-l-none': item.selected }" >
+                    {{ item.Nombre }} 
+                    <span ng-hide="item.Nombre || item.primerApellido">sin nombre</span>
+                  </span>
+                </a>
+              </div>
+            </div>
+            <div class="text-center pos-abt w-full" style="top:50%;" ng-hide="items ">Vacío</div>
+          </div>
+        </div>
+      </div>
+      <div class="wrapper b-t text-center" >
+
+      </div>
+    </div>
+  </div>
+
+  <div class="col bg-white-only">
+    <div class="vbox">
+      <div class="wrapper-sm b-b">
+       <toaster-container toaster-options="{'position-class': 'toast-top-right', 'close-button':true}"></toaster-container>
+        <div class="m-t-n-xxs m-b-n-xxs m-l-xs">
+          <a  class="btn btn-xs btn-default pull-right" ng-hide="!item" ng-click="openConfirmBorrarSlide(item)"><i tooltip="Borrar Slide" tooltip-placement="left" class="fa fa-times"></i></a>
+         <!--  <a class="btn btn-xs btn-primary" ng-hide="item.editing || !item" ng-click="editItem(item)">Editar</a>
+          <a class="btn btn-xs btn-success" ng-show="item.editing" ng-click="doneEditingFacilitador(item)">Guardar cambios</a> -->
+        </div>
+      </div>
+      <div class="row-row">
+        <div class="cell">
+          <div class="cell-inner">
+            <div class="wrapper-md">
+              <div class="hbox h-auto m-b-lg">
+                <div class="col text-center w-sm4"  ng-show="item.Nombre && !item.editing">
+                
+                  <div class="thumb-xl2 avatar2 inline">
+                  <img src="{{item.img}}" ng-hide="item.editing || !item.Nombre">
+                  </div>
+                </div>
+                <div class="col text-center w-sm"  ng-show="item.Nombre && !item.editing">
+                
+               
+                </div>
+
+           <!--    <div class="col-lg-18" ng-show="item.Nombre && !item.editing" ng-hide="item.editing || !item.Nombre">
+             
+                <strong> Nombre </strong>
+              
+               
+               
+         
+                </div> -->
+                <div class="colEditada v-middle font-thin">                     
+                  <div ng-show="item.editing" class="h1">
+                  <div class="col-sm-3" ng-show="item.editing">
+                    <input type="text" placeholder="Nombre" class="form-control font-bold" ng-model="item.Nombre" >
+                    </div>
+                     
+                   
+                  
+                   
+                </div>
+
+
+                 
+                         
+            <p></p><p></p>
+                </div>
+               
+              </div>
+              <div  class="m-b-md" ng-hide="!item" ui-refresh="alerts">
+        <alert ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert($index)">{{alert.msg}}</alert>
+   
+      </div>
+    
+     
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

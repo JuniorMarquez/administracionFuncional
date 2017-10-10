@@ -1,0 +1,101 @@
+<div class="modal-header" ng-init="consultaSuscripcion()">
+    <h3 class="modal-title">Aceptar Suscripcion a Capacitaciones<p>
+   </p></h3>
+
+</div>
+<div class="modal-body">
+    	
+  <div ng-controller="AccordionDemoCtrl"  >
+<accordion close-others="oneAtATime" >
+          <accordion-group heading="Datos Personales"   is-open="status.isFirstOpen" is-disabled="status.isFirstDisabled" >
+            <p>
+            <div ng-show="!item.editing">
+             
+              <div class="col-sm-12">
+              <b>Nombre Completo:</b>
+                {{item.nombres}} {{item.apellidos}}
+              </div>
+              <div class="col-sm-6">
+              <b>Identificacion:</b>
+                {{item.identificacion}}
+              </div>
+              <div class="col-sm-6">
+              <b>Sexo:</b>
+                {{item.sexo}} 
+              </div>            
+              <div class="col-sm-12">
+              <b>Nombre Completo:</b>
+                {{item.nombres}} {{item.apellidos}}
+              </div>    
+
+            </div>
+           
+           
+            
+            </p>
+          </accordion-group>
+         
+         <accordion-group heading="Datos de Contacto"  is-disabled="status.isFirstDisabled">
+            <p>
+            <div >
+            <div class="col-sm-6">
+              <b>Telefono:</b>
+                {{item.telefono}}
+              </div>
+            <div class="col-sm-6">
+              <b>Instagram:</b>
+                {{item.cuentaI}}
+              </div>
+               <div class="col-sm-6">
+              <b>Facebook:</b>
+                {{item.cuentaF}}
+              </div>
+               <div class="col-sm-6">
+              <b>Twitter:</b>
+                {{item.cuentaT}}
+              </div>
+                          
+            </div>
+  
+                 
+          </accordion-group>          
+  
+
+           <accordion-group heading="Datos Acad'emicos"  is-disabled="status.isFirstDisabled">
+            <p>
+            <div ng-show="!item.editing">
+              
+              <div class="col-sm-12"> 
+                <b>Universidad:</b> {{item.universidad}}
+              </div>
+            </div>
+            <div class="col-sm-12">
+              <b>Carrera:</b>
+                {{item.carrera}} 
+              </div>
+              <div class="col-sm-12">
+              <b>Area de Conocimiento de Interes:</b>
+                {{item.actividad}} 
+              </div>
+              <div class="col-sm-12">
+              <b>Recomendado por:</b>
+                {{item.informador}} 
+              </div>
+          
+            <div ng-show="item.editing" class="col-sm-6">
+            Contraseña
+            <input type="text" class="form-control input-sm"   placeholder="Contraseña" ng-model="item.password" style="" >
+            </div>
+            </p>
+          </accordion-group>          
+   
+        </accordion>
+       
+
+
+       </div>
+</div>
+<div class="modal-footer">                  
+    <button class="btn btn-default" ng-click="cancel()">Cancelar</button>
+    <button class="btn btn-primary" ng-click="okAprobacion(item)">OK</button>
+</div>

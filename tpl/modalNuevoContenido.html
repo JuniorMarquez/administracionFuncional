@@ -1,0 +1,21 @@
+<div class="modal-header">
+    <h3 class="modal-title">Agregar Contenido</h3>
+</div>
+<div class="panel-body">
+  <form class="bs-example form-horizontal">
+    <div class="form-group col-sm-12" >
+      <div class="col-sm-12">
+      <p></p>
+           <textarea class="form-control" rows="2" name="descripcion"   ng-model="item.descripcion"placeholder="Descripcion" required="true"></textarea>
+      </div>
+    </div>   
+  </form>
+</div>
+<div class="modal-footer">                  
+  <button class="btn btn-default" ng-click="cancel()">Cancelar</button>
+   <button class="btn btn-primary" ui-toggle-class="show inline" target="#spin" ng-click="okNuevoContenido(item)">
+          <span class="text">Ok</span>
+          <span class="text-active">Guardando información...</span>
+        </button>
+</div>
+

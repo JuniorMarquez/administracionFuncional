@@ -1,0 +1,348 @@
+
+  <style>
+        /* This helps the ng-show/ng-hide animations start at the right place. */
+        /* Since Angular has this but needs to load, this gives us the class early. */
+        .app { background-color: #f0f3f4; }
+    </style> <!--hbox layout -->
+           <script type="text/ng-template" id="modalConfirm.html">
+            <div ng-include="'tpl/modalConfirm.html'"></div>
+          </script>
+              <script type="text/ng-template" id="modalConfirmBorrarCapacitacion.html">
+            <div ng-include="'tpl/modalConfirmBorrarCapacitacion.html'"></div>
+          </script>
+          <script type="text/ng-template" id="modalConfirm2.html">
+            <div ng-include="'tpl/modalConfirm2.html'"></div>
+          </script>
+
+          <script type="text/ng-template" id="modalNuevoContenido.html">
+            <div ng-include="'tpl/modalNuevoContenido.html'"></div>
+          </script>
+          <script type="text/ng-template" id="modalBorrar.html">
+            <div ng-include="'tpl/modalBorrar.html'"></div>
+          </script>
+
+          <script type="text/ng-template" id="modalEdicion.html">
+            <div ng-include="'tpl/modalEdicion.html'"></div>
+          </script> 
+
+
+
+           <div class="">
+   </div>
+  <div class="hbox hbox-auto-xs hbox-auto-sm bg-light " ng-init="
+  app.settings.asideFixed = true;
+  app.settings.container = false;
+  app.settings.asideFolded = true;
+  app.hideAside = false;
+  app.hideFooter = true;
+  app.settings.asideFolded = true;" 
+  ng-controller="CapacitacionesCtrl">
+
+  
+
+  <!-- column -->
+  <div class="col w b-r" id="moreless" >
+    <div class="vbox">
+      <div class="row-row">
+        <div class="cell scrollable hover">
+          <div class="cell-inner" ui-refresh="tiposCapacitaciones">
+            <div class="list-group no-radius no-border no-bg m-b-none" ui-refresh="tiposCapacitaciones">
+              <a class="list-group-item b-b" ng-dblclick="selectCapacitacion({nombre:''})" ng-class="{'focus': (filter == '')}" ng-click="carga()">Tipo de Capacitacion<span  tooltip-placement="bottom"  tooltip="Doble click para actualizar" class="pull-right text-muted inline wrapper-xs m-r-sm"><i class="fa fa-refresh"></i></span></a>
+              <a ng-repeat="item in tiposCapacitaciones | orderBy:'nombre'" ng-dblclick="editItem(item)" class="list-group-item m-l hover-anchor b-a " ng-class="{'focus m-l-none': item.selected}" ng-click="selectTipoCapacitacion(item)" ui-refresh="tiposCapacitaciones">   
+                <span  ng-click="openConfirm2(item)" tooltip-placement="left" tooltip="Borrar" class="pull-right text-muted hover-action">
+                  <i class="fa fa-times"></i>
+                </span>
+                <span class="block text-ellipsis m-l-n text-md" ng-class="{'m-l-none': item.selected }" popover="{{item.nombre}}" popover-trigger="mouseenter" popover-placement="bottom">               
+                <span class="block" ng-class="{'m-n': item.selected }">{{ item.nombre ? item.nombre : 'Por definir' }}</span>
+                <input type="text" class="form-control pos-abt" ng-show="item.editing" ng-blur="doneEditingCapacitacion(item)" ng-model="item.nombre" style="top:3px;left:2px;width:98%" ui-focus="item.editing">
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="wrapper b-t">
+      </div>
+    </div>
+  </div>
+   <div class="col w b-r"  id="moreless2" >
+    <div class="vbox">
+      <div class="row-row">
+        <div class="cell scrollable hover">
+          <div class="cell-inner" ui-refresh="areasConocimiento">
+            <div class="list-group no-radius no-border no-bg m-b-none" ui-refresh="areasConocimiento">
+              <a class="list-group-item b-b" ng-dblclick="selectAreaConocimiento({nombre:''})" ng-class="{'focus': (filter == '')}" ng-click="carga()">Area de conocimiento<span  tooltip-placement="bottom"  tooltip="Doble click para actualizar" class="pull-right text-muted inline wrapper-xs m-r-sm"><i class="fa fa-refresh"></i></span></a>
+              <a ng-repeat="item in areasConocimiento | orderBy:'nombre'" ng-dblclick="editItem(item)" class="list-group-item m-l hover-anchor b-a " ng-class="{'focus m-l-none': item.selected}" ng-click="selectAreaConocimiento(item)" ui-refresh="areasConocimiento">   
+                <span  ng-click="openConfirm2(item)" tooltip-placement="left" tooltip="Borrar" class="pull-right text-muted hover-action">
+                  <i class="fa fa-times"></i>
+                </span>
+                <span class="block text-ellipsis m-l-n text-md" ng-class="{'m-l-none': item.selected }" popover="{{item.nombre}}" popover-trigger="mouseenter" popover-placement="bottom">               
+                <span class="block" ng-class="{'m-n': item.selected }">{{ item.nombre ? item.nombre : 'Por definir' }}</span>
+                <input type="text" class="form-control pos-abt" ng-show="item.editing" ng-blur="doneEditingAreaConocimiento(item)" ng-model="item.nombre" style="top:3px;left:2px;width:98%" ui-focus="item.editing">
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="wrapper b-t">
+      </div>
+    </div>
+  </div>
+  <!-- /column -->
+  <!-- column -->
+  <div class="col w-lg2 lter b-r">
+    <div class="vbox">
+ <!--     <div class="panel-heading">  
+                         
+         <i class="fa  fa-bank  text-muted"></i>
+        </div> -->
+      <div class="wrapper-xs b-b">
+        <div class="input-group m-b-xxs">
+          <span class="input-group-addon input-sm no-border no-bg"><i class="icon-magnifier text-md m-t-xxs"></i></span>
+          <input type="text" class="form-control input-sm no-border no-bg text-md" placeholder="{{items.nombre ? items.nombre : 'Todos'}}" ng-model="query">  
+        </div>
+      </div>
+      <div class="row-row">
+        <div class="cell scrollable hover">
+          <div class="cell-inner">
+            <div class="m-t-n-xxs">
+              <div class="list-group list-group-lg no-radius no-border no-bg m-b-none" >
+                <a ng-repeat="item in items | filter:{tipoCapacitacion:filter} | filter:query | orderBy:'titulo'" class="list-group-item m-l" ng-class="{'select m-l-none': item.selected }" ng-click="selectItem(item)" >
+                  <span class="block text-ellipsis m-l-n text-md" ng-class="{'m-l-none': item.selected }" popover="{{item.titulo}}" popover-trigger="mouseenter" popover-placement="bottom">
+                    {{ item.titulo }}
+                    <span ng-hide="item.titulo || item.subtitulo">sin nombre</span>
+                  </span>
+                </a>
+              </div>
+            </div>
+            <div class="text-center pos-abt w-full" style="top:50%;" ng-hide="(items | filter:{tipoCapacitacion:filter} | filter:query).length">Vacío</div>
+          </div>
+        </div>
+      </div>
+      <div class="wrapper b-t text-center" >
+        <a tooltip="Agregar Capacitación" ui-sref="app.agregarcap" class="btn btn-xs btn-default btn-addon"  ng-show="items"><i class="fa fa-plus fa-fw m-r-xs"></i> Capacitacion</a>
+      </div>
+    </div>
+  </div>
+  <!-- /column -->
+
+  <!-- column -->
+  <div class="col bg-white-only">
+    <div class="vbox">
+      <div class="wrapper-sm b-b">
+       <toaster-container toaster-options="{'position-class': 'toast-top-right', 'close-button':true}"></toaster-container>
+        <div class="m-t-n-xxs m-b-n-xxs m-l-xs">
+         <button class="btn btn-sm btn-default" ui-toggle-class="hide" target="#moreless"  popover="Mostrar/Ocultar Tipos de Capacitacion" popover-trigger="mouseenter" popover-placement="bottom">
+          <i class="fa fa-dedent text"></i>
+          <span class="text" ></span>
+          <i class="fa fa-indent text-active" ></i>
+          <span class="text-active" ></span>
+        </button>  
+          <button class="btn btn-sm btn-default" ui-toggle-class="hide" target="#moreless2"  popover="Mostrar/Ocultar Areas de conocimiento" popover-trigger="mouseenter" popover-placement="bottom">
+          <i class="fa fa-dedent text"></i>
+          <span class="text" ></span>
+          <i class="fa fa-indent text-active" ></i>
+          <span class="text-active" ></span>
+        </button>     
+          <a  class="btn btn-xs btn-default pull-right" ng-hide="!item" ng-click="openConfirmBorrarCapacitacion(item)"><i tooltip="Borrar Capacitacion" tooltip-placement="left" class="fa fa-times"></i></a>
+          <a class="btn btn-xs btn-primary" ng-hide="item.editing || !item" ng-click="editItem(item)">Editar</a>
+          <a class="btn btn-xs btn-success" ng-show="item.editing" ng-click="doneEditingCapacitacion(item,index)">Guardar cambios</a>
+        </div>
+      </div>
+      <div class="row-row">
+        <div class="cell">
+          <div class="cell-inner">
+            <div class="wrapper-md">
+              <div class="hbox h-auto m-b-lg">
+                <div class="col text-center w-sm"  ng-show="item.titulo && !item.editing">
+                
+                  <div class="thumb-lg avatar2 inline">
+                  <img src="js/controllers/uploads/{{item.img}}" ng-hide="item.editing || !item.titulo">
+                  </div>
+                </div>
+                <div class="col text-center w-sm3"  ng-show="item.titulo && !item.editing">
+                
+                  
+                </div>
+
+                <div class="col-lg-18" ng-show="item.titulo && !item.editing" ng-hide="item.editing || !item.titulo">
+                  <strong> COD: </strong>
+                  <span class="text-center">{{item.codigo}}</span>
+                  <p></p>
+                  <strong> Titulo: </strong>
+                  <span class="text-center">{{item.titulo}}</span>
+                  <p></p>
+                  <strong> Subtitulo: </strong>{{item.subtitulo}} 
+                  <p></p>
+                  <strong> Estado: </strong><span class="form-control-static" > {{item.status}}</span>
+                  <p></p>
+                  <strong> Area de Conocimiento: </strong>
+                  <span class="form-control-static" >{{item.area}} .</span>
+                   <p></p>
+                  <strong> Obligación empresarial: </strong>
+                  <span class="form-control-static" >{{item.tipoObligacion}} .</span>        
+                </div>        
+
+                
+
+
+                <div class="col  b-light row text-center no-gutter w-sm">
+                  <div class="row">
+                    <a href class="btn btn-rounded btn-lg btn-icon btn-info " ng-show="item.selected && !item.editing"
+                     > 
+                      <i class="icon icon-book-open  block m-b-xs fa-1x"></i>
+                    </a>
+                  </div> 
+                </div>
+              </div>
+              <div  class="m-b-md" ng-hide="!item" ui-refresh="alerts">
+                <alert ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert($index)">{{alert.msg}}</alert>
+              </div>
+               <div class="col-lg-18" ng-show="item.itemsContenido && !item.editing && item.selected" ui-refresh="itemsContenido" ng-hide="item.editing || !item.itemsContenido || !item.selected">
+                   <strong> Contenido: </strong>
+                  <ul>
+                    <li  ng-repeat="item in item.itemsContenido">
+                    {{item.contenido}}
+                    </li>
+                 </ul>
+                </div>
+
+      <!-- ƈomienzo de acordion -->
+              <div ng-controller="AccordionDemoCtrl" ng-show="item.titulo && item.editing"  >
+                <accordion close-others="oneAtATime">
+                  <accordion-group heading="Información de capacitación"   is-open="status.isFirstOpen" is-disabled="status.isFirstDisabled">
+                   
+                <div class="colEditada v-middle font-thin">                     
+                  <div ng-show="item.editing" class="h5">
+                   
+                   <div class="col-sm-6" ng-show="item.editing">
+                   <p>Código:</p>
+                    <input type="text" placeholder="COD" class="form-control w-auto  font-bold" ng-model="item.codigo" >
+                    </div>
+                       <div class="col-sm-4" ng-show="item.editing">
+                      <p>Estado:</p>
+                      <ui-select ng-model="item.status" theme="bootstrap" ng-show="item.editing">
+                        <ui-select-match placeholder="">{{$select.selected}}</ui-select-match>
+                        <ui-select-choices group-by="" repeat="item in estados | filter: $select.search">
+                          <span ng-bind-html="item | highlight: $select.search"></span>
+                        </ui-select-choices>
+                      </ui-select>
+                    </div> 
+                  </div>
+                  <div class="row col-sm-12">
+                    
+                    <div class="col-sm-12" ng-show="item.editing">
+                      <p>Titulo o tema:</p>
+                      <input type="text" placeholder="Titulo" class="form-control  font-bold" ng-model="item.titulo" >
+                    </div>
+                    <div class="col-sm-12" ng-show="item.editing"> 
+                      <p>Subtitulo:</p>
+                      <input type="text" placeholder="Subtitulo" class="form-control font-bold" ng-model="item.subtitulo" >
+                    </div>
+                  
+                  </div>
+                  <div class="row col-sm-12">
+                  <div class="col-sm-12" ng-show="item.editing">
+                    <p>Area de Conocimiento:</p>
+                    <ui-select ng-model="item.area" theme="bootstrap" ng-show="item.editing">
+                      <ui-select-match placeholder="Seleccione...">{{$select.selected.nombre}}</ui-select-match>
+                      <ui-select-choices group-by="'nombre'" repeat="item.nombre as item in areasConocimiento | filter: $select.search">
+                      <span ng-bind-html="item.nombre | highlight: $select.search"></span>
+                      </ui-select-choices>
+                    </ui-select>
+                  </div>  
+                  </div>
+                  <p></p><p></p>
+                </div>
+                  
+                  </accordion-group>
+                 
+                 <accordion-group heading="Imágen"  is-disabled="status.isFirstDisabled">
+
+ <div class="col-sm-12" ng-show="item.editing">
+
+                      <input type="file" nv-file-select="" uploader="uploader" />
+                      <table class="table bg-white-only b-a">
+                          <thead>
+                              <tr>
+                                  <th width="50%">Nombre</th>
+                               <!--    <th ng-show="uploader.isHTML5">Tamaño</th>
+                                  <th ng-show="uploader.isHTML5">Progreso</th> -->
+                                  <th>Estado</th>
+                                  <th>Acciones</th>
+                              </tr>
+                          </thead>
+                          <tbody>
+                              <tr ng-repeat="item in uploader.queue">
+                                  <td><strong>{{ item.file.name }}</strong></td>
+                               <!--    <td ng-show="uploader.isHTML5" nowrap>{{ item.file.size/1024/1024|number:2 }} MB</td>
+                                  <td ng-show="uploader.isHTML5">
+                                      <div class="progress progress-sm m-b-none m-t-xs">
+                                          <div class="progress-bar bg-info" role="progressbar" ng-style="{ 'width': item.progress + '%' }"></div>
+                                      </div>
+                                  </td> -->
+
+                                  <td class="text-center">
+                                      <span ng-show="item.isSuccess" class="text-success"><i class="glyphicon glyphicon-ok"></i></span>
+                                      <span ng-show="item.isCancel" class="text-warning"><i class="glyphicon glyphicon-ban-circle"></i></span>
+                                      <span ng-show="item.isError" class="text-danger"><i class="glyphicon glyphicon-remove"></i></span>
+                                  </td>
+                                  <td nowrap>
+                                      <button type="button" class="btn btn-default btn-xs" ng-click="item.upload()" ng-disabled="item.isReady || item.isUploading || item.isSuccess">
+                                          Subir
+                                      </button>
+                                      <button type="button" class="btn btn-default btn-xs" ng-click="item.cancel()" ng-disabled="!item.isUploading">
+                                          Cancelar
+                                      </button>
+                                      <button type="button" class="btn btn-default btn-xs" ng-click="item.remove()">
+                                          Remover
+                                      </button>
+                                  </td>
+                              </tr>
+                          </tbody>
+                      </table>
+                      <div class="progress bg-light dker" style="">
+                              <div class="progress-bar progress-bar-striped bg-info" role="progressbar" ng-style="{ 'width': uploader.progress + '%' }"></div>
+                      </div>
+                    </div>
+
+                        
+                  </accordion-group>          
+
+                   <accordion-group heading="Contenido"  is-disabled="status.isFirstDisabled" ng-show="item.id">
+                   <a  class="btn btn-xs btn-success pull-left"  ng-click="add() " tooltip="Agregar item de contenido" tooltip-placement="right"><i  class="fa fa-plus"></i> Item</a>
+        </br>
+        </br>  
+        <div ng-repeat="item in item.itemsContenido">
+          <textarea class="form-control" rows="2"  ng-model="item.contenido"placeholder="{{item.contenidoPlaceholder}}" required="true"></textarea>
+          </br>
+       
+      </div>
+
+                 <!--  <button class="btn m-b-xs w-xs btn-primary btn-rounded btn-xs pull-right" tooltip="Agregar Item de Contenido" tooltip-placement="left" ng-click="agregarContenido()" ><i class="fa fa-plus text"></i>
+          <span class="text" > Contenido</span></button>
+                         <div class="table-responsive">
+                <table ui-jq="dataTable" id="tabla1" ui-refresh="itemsContenidoV" ui-options="tbOptionsContenido"  class="table table-striped m-b-none" ng-hide="!itemsContenidoV">
+                  <thead>
+                    <tr>
+                    <th  style="width:90%">Item de Contenido</th>                     
+                    <th  style="width:10%">Acciones</th> 
+                    </tr>
+                  </thead>
+        
+                </table>
+              </div>  -->  
+           
+                </accordion>
+               
+              </div>
+      <!-- / accordion -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- /column -->
+</div>
+
+<!-- /hbox layout

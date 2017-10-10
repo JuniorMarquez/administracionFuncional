@@ -1,0 +1,18 @@
+<div class="modal-header" ng-init="consultaContenido()">
+    <h3 class="modal-title">Editar Item de Contenido
+</div>
+<div class="modal-body">
+        <div class="row form-group ">
+          <div class="col-md-12 ">
+          <p >Descripcion:</p>
+             <textarea rows="3" class="form-control input-sm"   placeholder="Descripción" ng-model="item.descripcion" style="" > </textarea>
+          </div>  
+        </div>
+</div>
+<div class="modal-footer">                  
+    <button class="btn btn-default" ng-click="cancel()">Cancelar</button>
+     <button class="btn btn-primary" ui-toggle-class="show inline" target="#spin" ng-click="okEdicion(item)">
+          <span class="text">Ok</span>
+          <span class="text-active">Guardando cambios...</span>
+        </button>
+</div>

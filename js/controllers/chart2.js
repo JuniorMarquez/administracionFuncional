@@ -35,19 +35,19 @@ app
     $scope.item={};
         var result = [];
 
-  // $http.get('http://54.202.62.62:1346/municipio').then(function (resp) {
+  // $http.get('http://52.39.15.75:1346/municipio').then(function (resp) {
   //   $scope.municipios = resp.data.results;
   // });
-  // $http.get('http://54.202.62.62:1346/universidad').then(function (resp) {
+  // $http.get('http://52.39.15.75:1346/universidad').then(function (resp) {
   //   $scope.universidades = resp.data.results;
   // });
-  // $http.get('http://54.202.62.62:1346/especialidad').then(function (resp) {
+  // $http.get('http://52.39.15.75:1346/especialidad').then(function (resp) {
   //   $scope.especialidades = resp.data.results;
   // });
-   $http.get('http://54.202.62.62:1346/equipodirectivo').then(function (resp) {
+   $http.get('http://52.39.15.75:1346/equipodirectivo').then(function (resp) {
     $scope.listadoDirectiva = resp.data.results;
   });
-    $http.get('http://54.202.62.62:1346/comite').then(function (resp) {
+    $http.get('http://52.39.15.75:1346/comite').then(function (resp) {
     $scope.listadoComite = resp.data.results;
   });
 
@@ -77,7 +77,7 @@ var totalOdontologos=0;
  var totalClinicasConsultorios=0;
  var totalPendientes=0;
  var pendientes=0;
-    $http.get('http://54.202.62.62:1346/miembro').then(function (resp) {
+    $http.get('http://52.39.15.75:1346/miembro').then(function (resp) {
     $scope.miembros = resp.data.results;
  var numero = $scope.miembros.length;
  $scope.total= numero;
@@ -105,7 +105,7 @@ $scope.guardar = function(item){
       
       item.nivel=3;
     item.status='actualizado';
-    $http.put('http://54.202.62.62:1346/miembro/'+MyService.data.idUsuario, item)
+    $http.put('http://52.39.15.75:1346/miembro/'+MyService.data.idUsuario, item)
     $modalInstance.close();
      $state.go('app.ok');
 };
@@ -130,7 +130,7 @@ $scope.guardar = function(item){
     $scope.totalMiembros=0;
     $scope.consultores=[];
     $scope.cargaMiembros = function(){
-      $http.get('http://54.202.62.62:1346/miembro/').then(function (resp) {
+      $http.get('http://52.39.15.75:1346/miembro/').then(function (resp) {
         $scope.miembros = resp.data.results;
         // for (var i=0;i<$scope.consultores.length;++i){
         //   if($scope.consultores[i].sexo=='Macho'){
@@ -147,7 +147,7 @@ $scope.guardar = function(item){
       var datosCuenta="";
       var item={};
 //     $scope.item={};
-    // $http.get('http://54.202.62.62:1346/configuracion').success(function(respuesta){
+    // $http.get('http://52.39.15.75:1346/configuracion').success(function(respuesta){
     //     $scope.configuracion = respuesta.results[0];
     //     $scope.item.mision=respuesta.results[0].mision; 
     // });

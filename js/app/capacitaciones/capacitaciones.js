@@ -176,14 +176,14 @@ var uploader = $scope.uploader = new FileUploader({
   };
  
   $scope.carga = function(){
-    $http.get('http://54.202.62.62:1346/tipoCapacitacion/').then(function (resp) {
+    $http.get('http://52.39.15.75:1346/tipoCapacitacion/').then(function (resp) {
       $scope.tiposCapacitaciones = resp.data.results;
     });
       $scope.item=null;
   };
   $scope.capacitaciones=[];
  $scope.cargaCapacitaciones=function(){
-  $http.get('http://54.202.62.62:1346/capacitacion/').then(function (resp) {
+  $http.get('http://52.39.15.75:1346/capacitacion/').then(function (resp) {
       $scope.capacitaciones = resp.data.results;
       // alert("tamaño capacitaciones: "+$scope.capacitaciones.length);
         });
@@ -335,7 +335,7 @@ $scope.carga();
   };
 
   $scope.deleteTipoCapacitacion = function(item){
-    $http.delete('http://54.202.62.62:1346/tipoCapacitacion/'+item.id , item)
+    $http.delete('http://52.39.15.75:1346/tipoCapacitacion/'+item.id , item)
     $scope.tiposCapacitaciones.splice($scope.tiposCapacitaciones.indexOf(item), 1);
   };
 
@@ -346,7 +346,7 @@ $scope.carga();
       $scope.item=[];
     });
     $scope.items=null;
-      $http.get('http://54.202.62.62:1346/areaconocimiento/').then(function (resp) {
+      $http.get('http://52.39.15.75:1346/areaconocimiento/').then(function (resp) {
       $scope.areasConocimiento = resp.data.results;
     });
     $scope.tipoCapacitacion = item;
@@ -390,7 +390,7 @@ $scope.carga();
   //   var result3 = [];
   //   $scope.itemsContenido=[];
   //   var indiceItems = MyService.data.identificadorItem; 
-  //   $http.get('http://54.202.62.62:1346/contenido/?idCapacitacion='+indiceItems).then(function (resp) {
+  //   $http.get('http://52.39.15.75:1346/contenido/?idCapacitacion='+indiceItems).then(function (resp) {
   //   $scope.itemsContenido = resp.data.results;
   //     for (var i  = 0; i<$scope.itemsContenido.length;i++){
   //       identifItems=$scope.itemsContenido[i].id;  
@@ -547,14 +547,14 @@ $scope.openBorrar = function (item) {
 };
 
   $scope.deleteItem = function(item){
-    $http.delete('http://54.202.62.62:1346/capacitacion/'+item.id , item)
+    $http.delete('http://52.39.15.75:1346/capacitacion/'+item.id , item)
     $scope.items.splice($scope.items.indexOf(item), 1);
     $scope.item = $filter('orderBy')($scope.items, 'titulo')[0];
     if($scope.item) $scope.item.selected = true;
   };
 
   $scope.deleteCapacitacion = function(capacitacion){
-    $http.delete('http://54.202.62.62:1346/capacitacion/'+capacitacion.id , capacitacion)
+    $http.delete('http://52.39.15.75:1346/capacitacion/'+capacitacion.id , capacitacion)
     $scope.capacitacionesFiltrados.splice($scope.capacitaciones.indexOf(capacitacion), 1);
     $scope.capacitacion = $filter('orderBy')($scope.capacitaciones, 'titulo')[0];
     if($scope.capacitacion) $scope.capacitacion.selected = true;
@@ -575,7 +575,7 @@ $scope.openBorrar = function (item) {
     $scope.item.tipoCapacitacion = MyService.data.tipoCapacitacion;
     $scope.item.mensajeNuevo=null;
     $scope.item.idUsuario = MyService.data.idUsuario;
-    $http.get('http://54.202.62.62:1346/tipoCapacitacion/').then(function (resp) {
+    $http.get('http://52.39.15.75:1346/tipoCapacitacion/').then(function (resp) {
     $scope.tiposCapacitaciones = resp.data.results;
     }); 
   };
@@ -593,7 +593,7 @@ $scope.openBorrar = function (item) {
     // $scope.capacitaciones.length=0;
     item.editing = false;
     $scope.item.selected = true;
-      // $http.get('http://54.202.62.62:1346/capacitacion/').then(function (resp) {
+      // $http.get('http://52.39.15.75:1346/capacitacion/').then(function (resp) {
       // $scope.capacitaciones = resp.data.results;
       // });
     // $scope.carga();
@@ -621,11 +621,11 @@ $scope.carga();
  $scope.items.splice($scope.items.indexOf(item), 1);
     if (MyService.data.idenCapacitacion){
       $scope.pop4();
-      $http.put('http://54.202.62.62:1346/capacitacion/'+MyService.data.idenCapacitacion , capacitacionAct)
+      $http.put('http://52.39.15.75:1346/capacitacion/'+MyService.data.idenCapacitacion , capacitacionAct)
     }
     else {
       $scope.pop3();;
-      $http.post('http://54.202.62.62:1346/capacitacion/', capacitacionAct)
+      $http.post('http://52.39.15.75:1346/capacitacion/', capacitacionAct)
     }
     $scope.cargaCapacitaciones();
     

@@ -90,7 +90,7 @@ $scope.suscripciones = [];
     $scope.getSuscripciones = function () {
       $scope.suscripciones=null;
      
-          $http.get('http://54.202.62.62:1346/suscripcion/').then(function (resp) {
+          $http.get('http://52.39.15.75:1346/suscripcion/').then(function (resp) {
       $scope.suscripciones= resp.data.results;
 
 
@@ -423,7 +423,7 @@ setTimeout(function() {$scope.getSuscripciones();}, 500);
  $scope.Aprobacion = function (iden) {
   MyService.data.idenSuscripcion=iden;
 var item=[];
-  $http.get("http://54.202.62.62:1346/suscripcion/"+iden).success(function(respuesta){        
+  $http.get("http://52.39.15.75:1346/suscripcion/"+iden).success(function(respuesta){        
     item=respuesta;
  if (item.tipoSuscripcion=="incompany"){$scope.openPeticionSusIn(iden);};
   if (item.tipoSuscripcion=="capacitacion"){$scope.openPeticionSusCap(iden);};

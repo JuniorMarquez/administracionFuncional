@@ -78,7 +78,7 @@ $scope.publicaciones = [];
       // setTimeout(function() {
            $scope.vigilante=$scope.vigilante+1;
            MyService.data.contador=$scope.vigilante;
-         $http.get('http://54.202.62.62:1346/publicacion/' ).success(function(respuesta){
+         $http.get('http://52.39.15.75:1346/publicacion/' ).success(function(respuesta){
       $scope.publicaciones = respuesta.results; 
 
         var bandera="";

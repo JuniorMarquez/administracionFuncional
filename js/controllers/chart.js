@@ -24,7 +24,7 @@ if ($scope.app.status=="actualizado"){$scope.vigilante="si"};
         var bandera="";
         var bandera2="";
         var identif="";
-  $http.get('http://54.202.62.62:1346/mensaje').then(function (resp) {
+  $http.get('http://52.39.15.75:1346/mensaje').then(function (resp) {
     $scope.mensajes = resp.data.results;
  if ($scope.mensajes){
         for (var i  = 0; i<$scope.mensajes.length;i++){
@@ -41,10 +41,10 @@ if ($scope.app.status=="actualizado"){$scope.vigilante="si"};
 
 
   });
-  $http.get('http://54.202.62.62:1346/obligacion').then(function (resp) {
+  $http.get('http://52.39.15.75:1346/obligacion').then(function (resp) {
     $scope.obligaciones = resp.data.results;
   });
-   $http.get('http://54.202.62.62:1346/equipodirectivo').then(function (resp) {
+   $http.get('http://52.39.15.75:1346/equipodirectivo').then(function (resp) {
     $scope.listadoDirectiva = resp.data.results;
   });
 
@@ -76,7 +76,7 @@ $scope.consultaSuscripcionDeArchivo=function(){
     elemento=$scope.item2[i];
           
               // alert("elemento:"+elemento.primerNombre);
-            $http.post('http://54.202.62.62:1346/suscripcion/',elemento);
+            $http.post('http://52.39.15.75:1346/suscripcion/',elemento);
             
            
           // a=a+1;
@@ -108,7 +108,7 @@ $scope.cargaInicial=function  () {
  var totalValidados=0;
  var pendientes=0;
  var agenda = 0;
-    $http.get('http://54.202.62.62:1346/suscripcion').then(function (resp) {
+    $http.get('http://52.39.15.75:1346/suscripcion').then(function (resp) {
     $scope.suscripciones = resp.data.results;
  var numero = $scope.suscripciones.length;
  var letra = "";
@@ -153,7 +153,7 @@ $scope.cargaInicial();
 $scope.guardar = function(item){
     $scope.pop();
     item.status='actualizado';
-    $http.put('http://54.202.62.62:1346/suscripcion/'+MyService.data.idUsuario, item)
+    $http.put('http://52.39.15.75:1346/suscripcion/'+MyService.data.idUsuario, item)
     $state.go('app.dashboard-v1');
 };
   $scope.today = function() {
@@ -177,7 +177,7 @@ $scope.guardar = function(item){
     $scope.totalSuscripciones=0;
     $scope.consultores=[];
     $scope.cargaSuscripciones = function(){
-      $http.get('http://54.202.62.62:1346/suscripcion/').then(function (resp) {
+      $http.get('http://52.39.15.75:1346/suscripcion/').then(function (resp) {
         $scope.suscripciones = resp.data.results;
         // for (var i=0;i<$scope.consultores.length;++i){
         //   if($scope.consultores[i].sexo=='Macho'){
@@ -194,7 +194,7 @@ $scope.guardar = function(item){
       var datosCuenta="";
       var item={};
 //     $scope.item={};
-    // $http.get('http://54.202.62.62:1346/configuracion').success(function(respuesta){
+    // $http.get('http://52.39.15.75:1346/configuracion').success(function(respuesta){
     //     $scope.configuracion = respuesta.results[0];
     //     $scope.item.mision=respuesta.results[0].mision; 
     // });

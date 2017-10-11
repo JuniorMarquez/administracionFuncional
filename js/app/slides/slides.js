@@ -36,7 +36,7 @@ app.controller('SlidesCtrl', ['$scope', '$state','$http', '$filter', '$modal', '
    
 
 $scope.cargaSlides=function () {
-    $http.get('http://54.202.62.62:1346/slide/').then(function (resp) {
+    $http.get('http://52.39.15.75:1346/slide/').then(function (resp) {
       $scope.items = resp.data.results;
       // alert("aqui");
        for (var i = 0; i < $scope.items.length; ++i) {
@@ -189,14 +189,14 @@ $scope.cargaSlides();
   };
 
  $scope.deleteItem = function(item){
-    $http.delete('http://54.202.62.62:1346/facilitador/'+item.id , item)
+    $http.delete('http://52.39.15.75:1346/facilitador/'+item.id , item)
     $scope.items.splice($scope.items.indexOf(item), 1);
     $scope.item = $filter('orderBy')($scope.items, 'primerNombre')[0];
     if($scope.item) $scope.item.selected = true;
   };
 
   $scope.deleteprofesional = function(profesional){
-    $http.delete('http://54.202.62.62:1346/facilitador/'+profesional.id , profesional)
+    $http.delete('http://52.39.15.75:1346/facilitador/'+profesional.id , profesional)
     $scope.profesionalesFiltrados.splice($scope.profesionales.indexOf(profesional), 1);
     $scope.profesional = $filter('orderBy')($scope.profesionales, 'nombres')[0];
     if($scope.profesional) $scope.profesional.selected = true;
@@ -291,10 +291,10 @@ $scope.cargaSlides();
     facilitadorAct.selected=item.selected;
     facilitadorAct.editing=item.editing;
     if (MyService.data.idenFacilitador){
-      $http.put('http://54.202.62.62:1346/facilitador/'+MyService.data.idenFacilitador, facilitadorAct)
+      $http.put('http://52.39.15.75:1346/facilitador/'+MyService.data.idenFacilitador, facilitadorAct)
     }
     else {
-      $http.post('http://54.202.62.62:1346/facilitador/', facilitadorAct)
+      $http.post('http://52.39.15.75:1346/facilitador/', facilitadorAct)
     }
     $scope.items = null;
     $scope.item = null;
@@ -340,16 +340,16 @@ $scope.cargaSlides();
 
     if (MyService.data.idenFacilitador){
       $scope.pop4();
-      $http.put('http://54.202.62.62:1346/facilitador/'+MyService.data.idenFacilitador , facilitadorAct)
+      $http.put('http://52.39.15.75:1346/facilitador/'+MyService.data.idenFacilitador , facilitadorAct)
     }
     else {
       $scope.pop3();;
-      $http.post('http://54.202.62.62:1346/facilitador/', facilitadorAct)
+      $http.post('http://52.39.15.75:1346/facilitador/', facilitadorAct)
     }
-    $http.get('http://54.202.62.62:1346/facilitadores/').then(function (resp) {
+    $http.get('http://52.39.15.75:1346/facilitadores/').then(function (resp) {
       $scope.facilitadores = resp.data.results;
     });
-    $http.get('http://54.202.62.62:1346/facilitador/').then(function (resp) {
+    $http.get('http://52.39.15.75:1346/facilitador/').then(function (resp) {
       $scope.app.states = resp.data.results;
     });
 

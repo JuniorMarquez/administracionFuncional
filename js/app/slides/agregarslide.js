@@ -157,7 +157,7 @@ var uploader = $scope.uploader = new FileUploader({
  $scope.itemsContenido = [{contenido:"",contenidoPlaceholder:"Contenido..."}];
  
   $scope.carga = function(){
-    $http.get('http://54.202.62.62:1346/tipoPublicacion/').then(function (resp) {
+    $http.get('http://52.39.15.75:1346/tipoPublicacion/').then(function (resp) {
       $scope.tiposPublicaciones = resp.data.results;
     });
    
@@ -207,7 +207,7 @@ var uploader = $scope.uploader = new FileUploader({
     slideAct.idUsuario=MyService.data.idUsuario;
   
       $scope.popNuevaSlide();
-      $http.post('http://54.202.62.62:1346/slide/', slideAct).success(function(data){
+      $http.post('http://52.39.15.75:1346/slide/', slideAct).success(function(data){
           $state.go('apps.slides'); 
       });
   };

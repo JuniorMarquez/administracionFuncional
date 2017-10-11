@@ -159,13 +159,13 @@ var uploader = $scope.uploader = new FileUploader({
  $scope.itemsContenido = [{contenido:"",contenidoPlaceholder:"Contenido..."}];
  
   $scope.carga = function(){
-    $http.get('http://54.202.62.62:1346/tipoCapacitacion/').then(function (resp) {
+    $http.get('http://52.39.15.75:1346/tipoCapacitacion/').then(function (resp) {
       $scope.tiposCapacitaciones = resp.data.results;
     });
-    $http.get('http://54.202.62.62:1346/areaconocimiento/').then(function (resp) {
+    $http.get('http://52.39.15.75:1346/areaconocimiento/').then(function (resp) {
       $scope.areasConocimiento = resp.data.results;
     });
-     $http.get('http://54.202.62.62:1346/obligacion/').then(function (resp) {
+     $http.get('http://52.39.15.75:1346/obligacion/').then(function (resp) {
       $scope.obligaciones = resp.data.results;
     });
       $scope.item=null;
@@ -222,7 +222,7 @@ var uploader = $scope.uploader = new FileUploader({
     capacitacionAct.observaciones=item.observaciones;
     capacitacionAct.duracion=item.duracion;
       $scope.pop3();
-      $http.post('http://54.202.62.62:1346/capacitacion/', capacitacionAct).success(function(data){
+      $http.post('http://52.39.15.75:1346/capacitacion/', capacitacionAct).success(function(data){
           
           $state.go('apps.capgestionar'); 
       });

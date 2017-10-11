@@ -159,7 +159,7 @@ var uploader = $scope.uploader = new FileUploader({
  $scope.itemsContenido = [{contenido:"",contenidoPlaceholder:"Contenido..."}];
  
   $scope.carga = function(){
-    $http.get('http://54.202.62.62:1346/tipoNoticia/').then(function (resp) {
+    $http.get('http://52.39.15.75:1346/tipoNoticia/').then(function (resp) {
       $scope.tiposNoticias = resp.data.results;
     });
    
@@ -211,7 +211,7 @@ var uploader = $scope.uploader = new FileUploader({
     noticiaAct.idUsuario=MyService.data.idUsuario;
     noticiaAct.observaciones=item.observaciones;
       $scope.pop3();
-      $http.post('http://54.202.62.62:1346/noticia/', noticiaAct).success(function(data){
+      $http.post('http://52.39.15.75:1346/noticia/', noticiaAct).success(function(data){
           $state.go('apps.notlistado'); 
       });
   };

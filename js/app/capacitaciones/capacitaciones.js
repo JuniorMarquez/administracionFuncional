@@ -126,7 +126,12 @@ var uploader = $scope.uploader = new FileUploader({
 
     $scope.opened = true;
   };
+$scope.open2 = function($event) {
+    $event.preventDefault();
+    $event.stopPropagation();
 
+    $scope.opened2   = true;
+  };
   $scope.dateOptions = {
     formatYear: 'yy',
     startingDay: 1,

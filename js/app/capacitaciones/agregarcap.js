@@ -114,6 +114,12 @@ var uploader = $scope.uploader = new FileUploader({
 
     $scope.opened = true;
   };
+   $scope.open2 = function($event) {
+    $event.preventDefault();
+    $event.stopPropagation();
+
+    $scope.opened2   = true;
+  };
 
   $scope.dateOptions = {
     formatYear: 'yy',
@@ -211,6 +217,10 @@ var uploader = $scope.uploader = new FileUploader({
     capacitacionAct.subtitulo=item.subtitulo;
     capacitacionAct.status=item.status;
     capacitacionAct.codigo=item.codigo;
+
+    capacitacionAct.fechaInicio=item.fechaInicio;
+    capacitacionAct.fechaFin=item.fechaFin;
+
     capacitacionAct.inversion=item.inversion;
     capacitacionAct.area=item.area;
     capacitacionAct.tipoCapacitacion=item.tipoCapacitacion;

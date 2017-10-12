@@ -183,7 +183,13 @@
                   <span class="form-control-static" >{{item.tipoObligacion}} .</span>    
                    <p></p>
                   <strong> Duración: </strong>
-                  <span class="form-control-static" >{{item.duracion}} .</span>        
+                  <span class="form-control-static" >{{item.duracion}} .</span>  
+                    <p></p>
+                  <strong> Fecha de inicio: </strong>
+                  <span class="form-control-static" >{{item.fechaInicio | date}} .</span>  
+                    <p></p>
+                  <strong> Fecha de culminación: </strong>
+                  <span class="form-control-static" >{{item.fechaFin | date}} .</span>        
                 </div>        
 
                 
@@ -248,6 +254,29 @@
                     </div>
                   
                   </div>
+                   <div class="col-md-12">
+          <div class="col-sm-6">
+          Fecha de inicio:
+            <p class="input-group">
+            
+              <input type="text" class="form-control" datepicker-popup="dd/MM/yyyy" ng-model="item.fechaInicio" is-open="opened"  placeholder="Fecha de inicio" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true"  />
+              <span class="input-group-btn">
+                <button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+              </span>
+            </p> 
+          </div> 
+          <div class="col-sm-6">
+          Fecha de culminación:
+           <p class="input-group">
+              
+              <input type="text" class="form-control" datepicker-popup="dd/MM/yyyy" ng-model="item.fechaFin" is-open="opened2" min-date="fechaInicio"  placeholder="Fecha de culminación"  datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true"  />
+              <span class="input-group-btn">
+                <button type="button" class="btn btn-default" ng-click="open2($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+              </span>
+            </p> 
+        
+          </div>
+       </div>
                   <div class="row col-sm-12">
                   <div class="col-sm-12" ng-show="item.editing">
                     <p>Area de Conocimiento:</p>

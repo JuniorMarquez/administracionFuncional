@@ -153,23 +153,62 @@
       <progressbar value="steps.percent" class="progress-xs" type="success"></progressbar>
       <!-- <p>Just one click to finish it.</p> -->
   <div class="row">
-      <div class="col-sm-6" style="z-index:24000;">
-                    </p>Obligación laboral:
-                    <ui-select ng-model="item.tipoObligacion" theme="bootstrap" >
-                      <ui-select-match placeholder="Seleccione...">{{$select.selected.nombre}}</ui-select-match>
-                      <ui-select-choices group-by="'nombre'" repeat="item.nombre as item in obligaciones | filter: $select.search">
-                      <span ng-bind-html="item.nombre | highlight: $select.search"></span>
-                      </ui-select-choices>
-                    </ui-select>
-                  </div>  
-       <div class="col-sm-12">
+       <div class="col-sm-6">
      
       </p>Duración:
-           <textarea class="form-control" rows="4" name="duracion"   ng-model="item.duracion" placeholder="Duración" required="true"></textarea>
+      <!--      <textarea class="form-control" rows="" name="duracion"   ng-model="item.duracion" placeholder="Duración" required="true"></textarea> -->
+            <input type="text" placeholder="Duración" class="form-control  font-bold" ng-model="item.duracion" >
+       </div> 
+
+      
+     
+      
+   
+       <div class="col-md-6">
+          <div class="col-sm-4">
+          Fecha de inicio:
+            <p class="input-group">
+            
+              <input type="text" class="form-control" datepicker-popup="dd/MM/yyyy" ng-model="item.fechaInicio" is-open="opened"  placeholder="Fecha de inicio" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true"  />
+              <span class="input-group-btn">
+                <button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+              </span>
+            </p> 
+          </div> 
+          <div class="col-sm-6">
+          Fecha de culminación:
+           <p class="input-group">
+              
+              <input type="text" class="form-control" datepicker-popup="dd/MM/yyyy" ng-model="item.fechaFin" is-open="opened2" min-date="fechaInicio"  placeholder="Fecha de culminación"  datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true"  />
+              <span class="input-group-btn">
+                <button type="button" class="btn btn-default" ng-click="open2($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+              </span>
+            </p> 
+        
+          </div>
+       </div>
+
+       <div class="col-sm-6" style="z-index:24000;">
+        </p>Obligación laboral:
+        <ui-select ng-model="item.tipoObligacion" theme="bootstrap" >
+          <ui-select-match placeholder="Seleccione...">{{$select.selected.nombre}}</ui-select-match>
+          <ui-select-choices group-by="'nombre'" repeat="item.nombre as item in obligaciones | filter: $select.search">
+          <span ng-bind-html="item.nombre | highlight: $select.search"></span>
+          </ui-select-choices>
+        </ui-select>
+      </div>  
+
+
+       <div class="col-md-6">   
 
       </p>Observaciones:
            <textarea class="form-control" rows="4" name="observaciones"   ng-model="item.observaciones" placeholder="Observaciones" required="true"></textarea>
       </div>
+          
+   
+            
+
+             
            </div>
       <div class="m-t m-b">
         <button type="button" class="btn btn-default btn-rounded" ng-click="steps.step2=true">Anterior</button>
